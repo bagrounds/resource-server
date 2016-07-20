@@ -1,0 +1,60 @@
+{
+  "name": "resource-server",
+  "version": "0.1.0",
+  "description": "Dynamically install and serve resources",
+  "main": "resource-server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production node resource-server.js",
+    "pretest": "npm run lint",
+    "test": "mocha",
+    "precoverage": "rm -rf coverage",
+    "coverage": "istanbul cover _mocha && cat ./coverage/lcov.info | coveralls",
+    "postcoverage": "codeclimate-test-reporter < coverage/lcov.info",
+    "predocument": "npm test && rm -rf docs",
+    "document": "jsdoc --destination docs -c .jsdoc.json -r",
+    "prelint": "standard-format -w",
+    "lint": "eslint --ignore-path .gitignore .",
+    "eslint": "eslint --ignore-path .gitignore .",
+    "gh-pages": "gh-pages-deploy"
+  },
+  "dependencies": {
+    "configstore": "^2.0.0",
+    "forever-monitor": "^1.7.0",
+    "lodash": "^4.11.2",
+    "portfinder": "^1.0.3",
+    "serve-function": "bagrounds/serve-function",
+    "serve-function-module-template": "bagrounds/serve-function-module-template",
+    "served-function-as-function": "bagrounds/served-function-as-function"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codeclimate-test-reporter": "^0.3.1",
+    "coveralls": "^2.11.9",
+    "eslint": "^2.9.0",
+    "gh-pages-deploy": "^0.4.2",
+    "istanbul": "^0.4.3",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.4.5",
+    "standard-format": "^2.2.1"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "docs",
+    "prep": [
+      "document"
+    ],
+    "noprompt": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bagrounds/resource-server.git"
+  },
+  "author": "Bryan Grounds <bagrounds@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bagrounds/resource-server/issues"
+  },
+  "homepage": "https://github.com/bagrounds/resource-server#readme"
+}
